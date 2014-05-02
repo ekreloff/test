@@ -210,18 +210,18 @@ void display()
     glPopMatrix();
 
     
-    glActiveTexture(GL_TEXTURE3);
+    //glActiveTexture(GL_TEXTURE3);
     glBindTexture(GL_TEXTURE_2D,texture[1]);
     
-    glActiveTexture(GL_TEXTURE4);
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D,texture[2]);
 
     glUseProgram(bumpShader);
     id = glGetUniformLocation(bumpShader,"tex1");
-    if (id>=0) glUniform1i(id,3);
+    if (id>=0) glUniform1i(id,2);
     
     id = glGetUniformLocation(bumpShader,"tex0");
-    if (id>=0) glUniform1i(id,4);
+    if (id>=0) glUniform1i(id,0);
     
     //Draw Bball
     glPushMatrix();
@@ -236,12 +236,12 @@ void display()
     //glUseProgram(0);
     glPopMatrix();
     
-    glActiveTexture(GL_TEXTURE5);
+    glActiveTexture(GL_TEXTURE2);
     glBindTexture(GL_TEXTURE_2D,texture[3]);
     
     glUseProgram(maskShader);
     id = glGetUniformLocation(maskShader, "mask");
-    if (id>=0) glUniform1i(id,5);
+    if (id>=0) glUniform1i(id,2);
     id = glGetUniformLocation(maskShader, "alphaDist");
     if (id>=0) glUniform1f(id,bounceDist);
      
@@ -276,7 +276,7 @@ void display()
     //glPopAttrib();
     
     //GRRAB THE DEPTH BUFFER
-    glActiveTexture(GL_TEXTURE6);
+    //glActiveTexture(GL_TEXTURE6);
     glBindTexture(GL_TEXTURE_2D, defaultTextures[1]);
     glCopyTexImage2D(GL_TEXTURE_2D,0,GL_DEPTH_COMPONENT16,0,0,W,H,0);
     
@@ -318,7 +318,7 @@ void display()
     id = glGetUniformLocation(dofShader,"img");
     if (id>=0) glUniform1i(id,0);
     id = glGetUniformLocation(dofShader,"bgl_DepthTexture");
-    if (id>=0) glUniform1i(id,6);
+    if (id>=0) glUniform1i(id,2);
 
     //  Disable depth
     glDisable(GL_DEPTH_TEST);
@@ -552,13 +552,13 @@ int main(int argc,char* argv[])
    glActiveTexture(GL_TEXTURE2);
    texture[0]  = LoadTexBMP("pepsicenter.bmp");
     
-   glActiveTexture(GL_TEXTURE3);
+    //glActiveTexture(GL_TEXTURE3);
    texture[1] = LoadTexBMP("normal.bmp");
     
-   glActiveTexture(GL_TEXTURE4);
+    //glActiveTexture(GL_TEXTURE4);
    texture[2]  = LoadTexBMP("leather.bmp");
     
-   glActiveTexture(GL_TEXTURE5);
+    //glActiveTexture(GL_TEXTURE5);
    texture[3] = LoadTexBMP("mask.bmp");
     
    //  Create Shader Prog
@@ -579,7 +579,7 @@ int main(int argc,char* argv[])
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
     
-    glActiveTexture(GL_TEXTURE6);
+    //glActiveTexture(GL_TEXTURE6);
     glBindTexture(GL_TEXTURE_2D,defaultTextures[1]);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
